@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"io"
 	"os"
+	"path/filepath"
 	"net/http"
 	"github.com/GeertJohan/go.rice"
 	"github.com/labstack/echo"
@@ -50,6 +51,9 @@ func main() {
 	}
 
 
+	newpath := filepath.Join(".", "public")
+	os.MkdirAll(newpath, os.ModePerm)
+
 	e := echo.New()
 
 	assetHandler := http.FileServer(rice.MustFindBox("public").HTTPBox())
@@ -61,7 +65,6 @@ func main() {
 	e.Use(middleware.Static("public"))
 	e.Post("/upload", upload)
 
-	e.Run(standard.New(addr))
-
-	fmt.Printf("Server running at", addr)
+	println("Server running at", addr)
+	e.Run(standard.New(addr)) // this is blocking, oops. First had println below :P
 }
