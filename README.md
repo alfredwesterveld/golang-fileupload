@@ -1,3 +1,7 @@
+# Warning
+
+This service has no security at all so it should only run in trusted environment (behind firewall)
+
 # Fileupload
 
 this is a real simple static binary to have upload/download service in one.
@@ -5,7 +9,6 @@ this is a real simple static binary to have upload/download service in one.
 ## installation
 
 Most easily just download cross compiled binaries from [releases](https://github.com/alfredwesterveld/golang-fileupload/releases)
-
 
 ## Usage
 
