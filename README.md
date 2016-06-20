@@ -4,7 +4,8 @@ this is a real simple static binary to upload files
 
 ## installation
 
-Most easily just download cross compiled binaries from releases.
+Most easily just download cross compiled binaries from [releases](https://github.com/alfredwesterveld/golang-fileupload/releases)
+
 
 ## Usage
 
