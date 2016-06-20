@@ -26,3 +26,6 @@ _testmain.go
 *.prof
 
 bin
+public
+.idea
+golang-fileupload

@@ -5,6 +5,7 @@ import (
 	"io"
 	"os"
 	"net/http"
+	"github.com/GeertJohan/go.rice"
 	"github.com/labstack/echo"
 	"github.com/labstack/echo/engine/standard"
 	"github.com/labstack/echo/middleware"
@@ -51,11 +52,16 @@ func main() {
 
 	e := echo.New()
 
+	assetHandler := http.FileServer(rice.MustFindBox("public").HTTPBox())
+
+	e.Get("/", standard.WrapHandler(assetHandler))
+
 	e.Use(middleware.Logger())
 	e.Use(middleware.Recover())
 	e.Use(middleware.Static("public"))
-
-	e.POST("/upload", upload)
+	e.Post("/upload", upload)
 
 	e.Run(standard.New(addr))
+
+	fmt.Printf("Server running at", addr)
 }
